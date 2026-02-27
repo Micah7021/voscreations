@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
 <style>
-
 /* RESET */
 *{
   margin:0;
@@ -34,9 +33,7 @@ body{
   to{opacity:1;}
 }
 
-/* ====================== */
 /* HAMBURGER MENU */
-/* ====================== */
 .menu-icon{
   position:fixed;
   top:20px;
@@ -49,7 +46,6 @@ body{
   cursor:pointer;
   z-index:10;
 }
-
 .menu-icon div{
   height:3px;
   background:white;
@@ -68,21 +64,17 @@ body{
   transition:0.4s ease;
   z-index:20;
 }
-
 .side-menu a{
   display:block;
   color:white;
   padding:15px 25px;
   text-decoration:none;
 }
-
 .side-menu a:hover{
   background:red;
 }
 
-/* ====================== */
 /* VIDEO BACKGROUND */
-/* ====================== */
 .video-bg{
   position:fixed;
   top:0;
@@ -92,7 +84,6 @@ body{
   object-fit:cover;
   z-index:-2;
 }
-
 .overlay{
   position:fixed;
   top:0;
@@ -103,9 +94,7 @@ body{
   z-index:-1;
 }
 
-/* ====================== */
 /* MAIN CONTENT */
-/* ====================== */
 .container{
   display:flex;
   flex-direction:column;
@@ -126,16 +115,40 @@ body{
   margin-bottom:10px;
 }
 
-/* TAGLINE */
-.tagline{
+/* FIRST WRITE-UP */
+.tagline1{
   font-family:'Montserrat',sans-serif;
-  font-size:clamp(14px,4vw,20px);
+  font-size:clamp(16px,4vw,22px);
   color:white;
   margin-top:5px;
-  max-width:90%;
 }
 
-/* BUTTON */
+/* SECOND WRITE-UP WITH BLACK BRUSH STROKE */
+.tagline2-container{
+  position:relative;
+  margin-top:5px;
+}
+.tagline2-container::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  width:100%;
+  height:40%;
+  background:black;
+  z-index:-1;
+  transform:translateY(-50%);
+  opacity:0.5;
+  border-radius:5px;
+}
+.tagline2{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(16px,4vw,22px);
+  color:white;
+  padding:0 8px;
+}
+
+/* VIEW SERVICES BUTTON */
 .main-btn{
   margin-top:30px;
   padding:12px 30px;
@@ -147,14 +160,24 @@ body{
   cursor:pointer;
   transition:0.4s;
 }
-
 .main-btn:hover{
   background:red;
   color:white;
   transform:scale(1.05);
 }
 
-/* GLOW ANIMATION COLORS */
+/* CURVY ARROW */
+.arrow{
+  width:50px;
+  height:50px;
+  margin-top:20px;
+  border-left:5px solid white;
+  border-bottom:5px solid white;
+  transform:rotate(-45deg);
+  animation:arrowBounce 1s infinite alternate;
+}
+
+/* GLOW ANIMATION COLORS FOR LOGO */
 @keyframes glow{
   0%{text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;}
   20%{text-shadow:0 0 10px #00ff00,0 0 20px #00ff00;}
@@ -164,29 +187,22 @@ body{
   100%{text-shadow:0 0 10px #00ffff,0 0 20px #00ffff;}
 }
 
-/* MOBILE RESPONSIVE */
-@media(max-width:600px){
-  .logo{
-    font-size:clamp(32px,12vw,60px);
-  }
-  .tagline{
-    font-size:clamp(12px,4vw,18px);
-  }
-  .main-btn{
-    font-size:14px;
-    padding:10px 25px;
-  }
-  .menu-icon{
-    top:15px;
-    right:15px;
-    width:25px;
-    height:18px;
-  }
-  .menu-icon div{
-    height:3px;
-  }
+/* ARROW BOUNCE */
+@keyframes arrowBounce{
+  0%{transform:rotate(-45deg) translateY(0);}
+  50%{transform:rotate(-45deg) translateY(10px);}
+  100%{transform:rotate(-45deg) translateY(0);}
 }
 
+/* MOBILE RESPONSIVE */
+@media(max-width:600px){
+  .logo{font-size:clamp(32px,12vw,60px);}
+  .tagline1,.tagline2{font-size:clamp(12px,4vw,18px);}
+  .main-btn{font-size:14px;padding:10px 25px;}
+  .menu-icon{top:15px;right:15px;width:25px;height:18px;}
+  .menu-icon div{height:3px;}
+  .arrow{width:40px;height:40px;}
+}
 </style>
 </head>
 
@@ -213,7 +229,11 @@ body{
 <!-- MAIN CONTENT -->
 <div class="container">
   <div class="logo">Vos Créations</div>
-  <div class="tagline">Your everyday go-to designer</div>
+  <div class="tagline1">Your everyday go-to designer</div>
+  <div class="tagline2-container">
+    <div class="tagline2">Creative Design • Branding • Digital Visuals</div>
+  </div>
+  <div class="arrow"></div>
   <a href="services.html">
     <button class="main-btn">View Services</button>
   </a>
@@ -246,4 +266,4 @@ menuToggle.addEventListener('click', ()=>{
 </script>
 
 </body>
-  </html>
+</html>
