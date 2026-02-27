@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vos Créations</title>
 
-<!-- Graffiti Font -->
-<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<!-- Artistic Graffiti Font -->
+<link href="https://fonts.googleapis.com/css2?family=Ranchers&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker', cursive;}
+html,body{height:100%;width:100%;overflow:hidden;font-family:'Ranchers', cursive;}
 
 /* Video Background */
 .video-bg{
@@ -49,7 +49,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 
 /* Hamburger menu bigger */
 .menu-icon{
-  font-size:36px; /* bigger */
+  font-size:40px;
   color:white;
   cursor:pointer;
 }
@@ -78,18 +78,20 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 /* Company Name Container */
 .brand-container{
   position:absolute;
-  top:40%;
+  top:36%;
   left:50%;
   transform:translate(-50%, -50%);
   z-index:1;
   display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
 /* Each letter */
 .brand-container span{
-  font-size:6rem;
+  font-size:9rem;
   color:#ff006e;
-  text-shadow: 3px 3px 10px #00fff2;
+  text-shadow: 3px 3px 12px #00fff2;
   opacity:0;
   display:inline-block;
   animation:letterIn 1s forwards;
@@ -98,21 +100,22 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 /* Slogan */
 .slogan{
   position:absolute;
-  top:55%;
+  top:48%;
   left:50%;
   transform:translateX(-50%);
-  font-size:1.5rem;
+  font-size:2.5rem;
   color:white;
+  -webkit-text-stroke: 2px black; /* black stroke */
   opacity:0;
   animation:fadeInSlogan 2s forwards;
-  animation-delay:3s;
+  animation-delay:3.5s;
   z-index:1;
 }
 
 /* Letter animation from random directions */
 @keyframes letterIn{
-  0%{opacity:0; transform:translate(var(--x), var(--y)) rotate(-20deg);}
-  60%{opacity:1; transform:translate(0,0) rotate(5deg);}
+  0%{opacity:0; transform:translate(var(--x), var(--y)) rotate(-25deg);}
+  60%{opacity:1; transform:translate(0,0) rotate(10deg);}
   100%{opacity:1; transform:translate(0,0) rotate(0deg);}
 }
 
@@ -124,17 +127,17 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 /* VC Ball */
 .vc-ball{
   position:absolute;
-  width:80px;
-  height:80px;
+  width:90px;
+  height:90px;
   background:white;
   border-radius:50%;
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:1.8rem;
+  font-size:2rem;
   color:#0066ff;
   font-weight:bold;
-  text-shadow:0 0 5px #0066ff,0 0 10px #00ccff;
+  text-shadow:0 0 6px #0066ff,0 0 12px #00ccff;
   z-index:2;
 }
 
@@ -145,7 +148,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
   right:20px;
   background:#25D366;
   color:white;
-  padding:12px 18px;
+  padding:14px 20px;
   border-radius:30px;
   text-decoration:none;
   font-weight:bold;
@@ -205,18 +208,18 @@ const brandContainer = document.getElementById('brandContainer');
 brandText.split('').forEach((letter,index)=>{
   const span = document.createElement('span');
   span.textContent = letter;
-  let xOffset = (Math.random()*200 - 100) + "px"; 
+  let xOffset = (Math.random()*300 - 150) + "px"; 
   let yOffset = (Math.random()*200 - 100) + "px";
   span.style.setProperty('--x', xOffset);
   span.style.setProperty('--y', yOffset);
-  span.style.animationDelay = `${index*0.2}s`;
+  span.style.animationDelay = `${index*0.3}s`;
   brandContainer.appendChild(span);
 });
 
 /* Bouncing VC Ball */
 const ball = document.getElementById('vcBall');
-let posX = Math.random() * (window.innerWidth - 80);
-let posY = Math.random() * (window.innerHeight - 80);
+let posX = Math.random() * (window.innerWidth - 90);
+let posY = Math.random() * (window.innerHeight - 90);
 let velX = (Math.random()*3 +1) * (Math.random() <0.5 ? 1:-1);
 let velY = (Math.random()*3 +1) * (Math.random() <0.5 ? 1:-1);
 
@@ -237,4 +240,4 @@ moveBall();
 </script>
 
 </body>
-</html>
+                                                   </html>
