@@ -3,251 +3,148 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vos Créations</title>
+<title>Voscreations</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;width:100%;overflow:hidden;font-family:'Montserrat', sans-serif;}
 
-/* Background Video */
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,body{
+height:100%;
+width:100%;
+overflow-x:hidden;
+font-family:'Montserrat',sans-serif;
+background:#000;
+}
+
+/* FADE IN */
+body{
+opacity:0;
+animation:fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn{
+to{opacity:1;}
+}
+
+/* VIDEO BACKGROUND */
 .video-bg{
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
 }
+
+/* DARK OVERLAY */
 .overlay{
-  position:absolute; top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.2);
-  z-index:-1;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+z-index:-1;
 }
 
-/* Top Row with black and glowing bottom */
-.menu-row{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:70px;
-  background:#000000;
-  border-bottom: 4px solid #ffffff;
-  box-shadow: 0 0 15px #ffffff; /* glowing effect */
-  z-index:3;
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  padding-right:20px;
-}
-.menu-icon{
-  font-size:36px;
-  color:white;
-  cursor:pointer;
+/* MAIN CONTAINER */
+.container{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+text-align:center;
+padding:20px;
 }
 
-/* Side Menu */
-.side-menu{
-  position:fixed;
-  top:0;
-  right:-250px;
-  width:250px;
-  height:100%;
-  background:#111;
-  padding-top:60px;
-  transition:0.4s;
-  z-index:4;
-}
-.side-menu a{
-  display:block;
-  color:white;
-  padding:15px 30px;
-  text-decoration:none;
-  font-size:1.2rem;
-}
-.side-menu a:hover{background:#ff006e;}
-
-/* Company Name */
-.brand-container{
-  position:absolute;
-  top:35%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  z-index:1;
-  display:flex;
-  white-space:nowrap;
-}
-.brand-container span{
-  font-size:10vw; /* responsive for desktop & mobile */
-  font-family:'Allura', cursive;
-  color:white;
-  text-shadow:
-    0 0 5px #ff0000,
-    0 0 10px #ff0000,
-    0 0 20px #ff0000,
-    0 0 40px #ff0000;
-  opacity:0;
-  display:inline-block;
-  animation:letterIn 1s forwards;
+/* LOGO */
+.logo{
+font-family:'Playfair Display',serif;
+font-size:clamp(32px,8vw,60px);
+color:#fff;
+text-shadow:0 0 15px red;
+letter-spacing:2px;
+margin-bottom:10px;
 }
 
-/* Slogan */
-.slogan{
-  position:absolute;
-  top:48%;
-  left:50%;
-  transform:translateX(-50%);
-  font-size:2rem;
-  font-family:'Montserrat', sans-serif;
-  font-weight:700;
-  color:white;
-  -webkit-text-stroke:1px black;
-  opacity:0;
-  animation:fadeInSlogan 2s forwards;
-  animation-delay:3s;
-  z-index:1;
+/* TAGLINE */
+.tagline{
+font-size:clamp(14px,4vw,20px);
+color:#fff;
+margin-top:5px;
+max-width:90%;
 }
 
-/* Animations */
-@keyframes letterIn{
-  0%{opacity:0; transform:translate(var(--x), var(--y)) rotate(-10deg);}
-  60%{opacity:1; transform:translate(0,0) rotate(3deg);}
-  100%{opacity:1; transform:translate(0,0) rotate(0deg);}
-}
-@keyframes fadeInSlogan{
-  0%{opacity:0;}
-  100%{opacity:1;}
-}
-
-/* VC Ball */
-.vc-ball{
-  position:absolute;
-  width:90px;
-  height:90px;
-  background:white;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:2rem;
-  color:#0066ff;
-  font-weight:bold;
-  text-shadow:0 0 6px #0066ff,0 0 12px #00ccff;
-  z-index:2;
+/* BUTTON */
+.main-btn{
+margin-top:30px;
+padding:12px 30px;
+background:white;
+color:black;
+border:none;
+border-radius:30px;
+font-size:16px;
+cursor:pointer;
+transition:0.4s;
 }
 
-/* WhatsApp */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#25D366;
-  color:white;
-  padding:14px 20px;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
-  z-index:5;
+.main-btn:hover{
+background:red;
+color:white;
+transform:scale(1.05);
 }
 
-/* Mobile adjustments */
-@media screen and (max-width:600px){
-  .brand-container span{
-    font-size:20vw; /* fits smaller screens perfectly */
-    text-shadow:
-      0 0 3px #ff0000,
-      0 0 6px #ff0000,
-      0 0 12px #ff0000,
-      0 0 20px #ff0000;
-  }
-  .slogan{
-    font-size:1.2rem;
-  }
-  .vc-ball{
-    width:50px;
-    height:50px;
-    font-size:1.2rem;
-  }
-  .menu-icon{
-    font-size:28px;
-  }
+a{
+text-decoration:none;
 }
+
 </style>
 </head>
+
 <body>
 
-<!-- Background Video -->
-<video autoplay muted loop playsinline class="video-bg">
-  <source src="backgroundvideo1.mp4" type="video/mp4">
-</video>
+<video autoplay muted loop class="video-bg" id="bgVideo"></video>
 <div class="overlay"></div>
 
-<!-- Top Row -->
-<div class="menu-row">
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+<div class="container">
+    <div class="logo">Voscreations</div>
+    <div class="tagline">
+        Creative Design • Branding • Digital Visuals
+    </div>
+
+    <a href="services.html">
+        <button class="main-btn">View Services</button>
+    </a>
 </div>
-
-<!-- Side Menu -->
-<div class="side-menu" id="menu">
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="order.html">Order</a>
-</div>
-
-<!-- Company Name -->
-<div class="brand-container" id="brandContainer"></div>
-
-<!-- Slogan -->
-<p class="slogan">Your everyday go-to designer</p>
-
-<!-- Bouncing VC Ball -->
-<div class="vc-ball" id="vcBall">VC</div>
-
-<!-- WhatsApp -->
-<a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">WhatsApp</a>
 
 <script>
-/* Side Menu Toggle */
-function toggleMenu(){
-  let menu=document.getElementById('menu');
-  menu.style.right=(menu.style.right==='0px')?'-250px':'0';
-}
 
-/* Letter-by-letter animation */
-const brandText="Vos Créations";
-const brandContainer=document.getElementById('brandContainer');
-brandText.split('').forEach((letter,index)=>{
-  const span=document.createElement('span');
-  span.textContent=letter;
-  let xOffset=(Math.random()*100-50)+'px';
-  let yOffset=(Math.random()*50-25)+'px';
-  span.style.setProperty('--x', xOffset);
-  span.style.setProperty('--y', yOffset);
-  span.style.animationDelay=`${index*0.15}s`;
-  brandContainer.appendChild(span);
-});
+// YOUR EXACT VIDEO FILES
+const videos = [
+"backgroundvideo1.mp4",
+"backgroundvideo2.mp4",
+"backgroundvideo3.mp4",
+"backgroundvideo4.mp4",
+"backgroundvideo5.mp4",
+"backgroundvideo6.mp4",
+"backgroundvideo7.mp4"
+];
 
-/* Bouncing VC Ball */
-const ball=document.getElementById('vcBall');
-let posX=Math.random()*(window.innerWidth-90);
-let posY=Math.random()*(window.innerHeight-90);
-let velX=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
-let velY=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
-function moveBall(){
-  posX+=velX; posY+=velY;
-  if(posX<0||posX+ball.offsetWidth>window.innerWidth) velX*=-1;
-  if(posY<0||posY+ball.offsetHeight>window.innerHeight) velY*=-1;
-  velX+=(Math.random()-0.5)*0.2;
-  velY+=(Math.random()-0.5)*0.2;
-  ball.style.transform=`translate(${posX}px, ${posY}px)`;
-  requestAnimationFrame(moveBall);
-}
-moveBall();
+// RANDOM VIDEO ON REFRESH
+const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+document.getElementById("bgVideo").src = randomVideo;
+
 </script>
+
 </body>
 </html>
