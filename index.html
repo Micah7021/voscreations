@@ -28,14 +28,16 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Montserrat', sans-
   z-index:-1;
 }
 
-/* Top Row */
+/* Top Row with black and glowing bottom */
 .menu-row{
   position:fixed;
   top:0;
   left:0;
   width:100%;
   height:70px;
-  background:#0066ff;
+  background:#000000;
+  border-bottom: 4px solid #ffffff;
+  box-shadow: 0 0 15px #ffffff; /* glowing effect */
   z-index:3;
   display:flex;
   align-items:center;
@@ -80,10 +82,10 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Montserrat', sans-
   white-space:nowrap;
 }
 .brand-container span{
-  font-size:8rem; /* default desktop */
+  font-size:8rem; /* desktop default */
   font-family:'Allura', cursive;
-  color:#ff006e;
-  text-shadow:2px 2px 8px #00fff2;
+  color:white; /* white letters */
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; /* red glow */
   opacity:0;
   display:inline-block;
   animation:letterIn 1s forwards;
@@ -151,10 +153,11 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Montserrat', sans-
 /* Mobile adjustments */
 @media screen and (max-width:600px){
   .brand-container span{
-    font-size:3rem; /* smaller for mobile */
+    font-size:2.5rem; /* much smaller for mobile */
+    text-shadow: 0 0 6px #ff0000, 0 0 12px #ff0000, 0 0 18px #ff0000;
   }
   .slogan{
-    font-size:1.2rem; /* smaller slogan */
+    font-size:1.2rem; 
   }
   .vc-ball{
     width:50px;
@@ -239,4 +242,4 @@ function moveBall(){
 moveBall();
 </script>
 </body>
-  </html>
+</html>
