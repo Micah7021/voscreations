@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vos Créations</title>
 
-<!-- Graffiti-style font -->
-<link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap" rel="stylesheet">
+<!-- Fancy calligraphy font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Great', cursive;}
+html,body{height:100%;width:100%;overflow:hidden;font-family:'Great Vibes', cursive;}
 
-/* Background Video */
+/* Video Background */
 .video-bg{
   position:fixed;
   top:0; left:0;
@@ -21,18 +21,14 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Gre
   object-fit:contain;
   z-index:-2;
 }
-
-/* Overlay */
 .overlay{
-  position:absolute;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  background: linear-gradient(135deg, rgba(0,150,255,0.2), rgba(0,204,255,0.2));
+  position:absolute; top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.2);
   z-index:-1;
 }
 
-/* Top row */
+/* Top Row */
 .menu-row{
   position:fixed;
   top:0;
@@ -47,12 +43,12 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Gre
   padding-right:20px;
 }
 .menu-icon{
-  font-size:40px;
+  font-size:36px;
   color:white;
   cursor:pointer;
 }
 
-/* Side menu */
+/* Side Menu */
 .side-menu{
   position:fixed;
   top:0;
@@ -73,22 +69,20 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Gre
 }
 .side-menu a:hover{background:#ff006e;}
 
-/* Company Name Container */
+/* Company Name */
 .brand-container{
   position:absolute;
-  top:38%;
+  top:40%;
   left:50%;
   transform:translate(-50%, -50%);
   z-index:1;
   display:flex;
-  white-space:nowrap; /* ensure letters stay in one line */
+  white-space:nowrap;
 }
-
-/* Each letter */
 .brand-container span{
-  font-size:9rem;
+  font-size:8rem;
   color:#ff006e;
-  text-shadow: 3px 3px 12px #00fff2;
+  text-shadow:2px 2px 8px #00fff2;
   opacity:0;
   display:inline-block;
   animation:letterIn 1s forwards;
@@ -97,21 +91,21 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Gre
 /* Slogan */
 .slogan{
   position:absolute;
-  top:52%;
+  top:54%;
   left:50%;
   transform:translateX(-50%);
-  font-size:3rem;
+  font-size:2.5rem;
   color:white;
   -webkit-text-stroke:2px black;
   opacity:0;
   animation:fadeInSlogan 2s forwards;
-  animation-delay:3.5s;
+  animation-delay:3s;
   z-index:1;
 }
 
-/* Letter animation */
+/* Animations */
 @keyframes letterIn{
-  0%{opacity:0; transform:translate(var(--x), var(--y)) rotate(-20deg);}
+  0%{opacity:0; transform:translate(var(--x), var(--y)) rotate(-15deg);}
   60%{opacity:1; transform:translate(0,0) rotate(5deg);}
   100%{opacity:1; transform:translate(0,0) rotate(0deg);}
 }
@@ -120,11 +114,10 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Gre
   100%{opacity:1;}
 }
 
-/* VC ball */
+/* VC Ball */
 .vc-ball{
   position:absolute;
-  width:90px;
-  height:90px;
+  width:90px; height:90px;
   background:white;
   border-radius:50%;
   display:flex;
@@ -179,7 +172,7 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Gre
 <!-- Slogan -->
 <p class="slogan">Your everyday go-to designer</p>
 
-<!-- Bouncing VC ball -->
+<!-- Bouncing VC Ball -->
 <div class="vc-ball" id="vcBall">VC</div>
 
 <!-- WhatsApp -->
@@ -189,33 +182,33 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Fredericka the Gre
 /* Side Menu Toggle */
 function toggleMenu(){
   let menu=document.getElementById('menu');
-  menu.style.right = (menu.style.right==='0px')?'-250px':'0';
+  menu.style.right=(menu.style.right==='0px')?'-250px':'0';
 }
 
 /* Letter-by-letter animation */
-const brandText = "Vos Créations";
-const brandContainer = document.getElementById('brandContainer');
+const brandText="Vos Créations";
+const brandContainer=document.getElementById('brandContainer');
 brandText.split('').forEach((letter,index)=>{
-  const span = document.createElement('span');
-  span.textContent = letter;
-  let xOffset = (Math.random()*300 - 150) + "px";
-  let yOffset = (Math.random()*200 - 100) + "px";
+  const span=document.createElement('span');
+  span.textContent=letter;
+  let xOffset=(Math.random()*200-100)+'px';
+  let yOffset=(Math.random()*100-50)+'px';
   span.style.setProperty('--x', xOffset);
   span.style.setProperty('--y', yOffset);
-  span.style.animationDelay = `${index*0.25}s`;
+  span.style.animationDelay=`${index*0.25}s`;
   brandContainer.appendChild(span);
 });
 
-/* Bouncing VC ball */
-const ball = document.getElementById('vcBall');
-let posX = Math.random()*(window.innerWidth-90);
-let posY = Math.random()*(window.innerHeight-90);
-let velX = (Math.random()*3 +1)*(Math.random()<0.5?1:-1);
-let velY = (Math.random()*3 +1)*(Math.random()<0.5?1:-1);
+/* Bouncing VC Ball */
+const ball=document.getElementById('vcBall');
+let posX=Math.random()*(window.innerWidth-90);
+let posY=Math.random()*(window.innerHeight-90);
+let velX=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
+let velY=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
 function moveBall(){
   posX+=velX; posY+=velY;
-  if(posX<0 || posX+ball.offsetWidth>window.innerWidth) velX*=-1;
-  if(posY<0 || posY+ball.offsetHeight>window.innerHeight) velY*=-1;
+  if(posX<0||posX+ball.offsetWidth>window.innerWidth) velX*=-1;
+  if(posY<0||posY+ball.offsetHeight>window.innerHeight) velY*=-1;
   velX+=(Math.random()-0.5)*0.2;
   velY+=(Math.random()-0.5)*0.2;
   ball.style.transform=`translate(${posX}px, ${posY}px)`;
@@ -224,4 +217,4 @@ function moveBall(){
 moveBall();
 </script>
 </body>
-  </html>
+</html>
