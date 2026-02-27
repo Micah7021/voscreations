@@ -18,11 +18,11 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
   top:0; left:0;
   width:100%;
   height:100%;
-  object-fit:contain; /* desktop-scaled */
+  object-fit:contain;
   z-index:-2;
 }
 
-/* Overlay for better text readability */
+/* Overlay */
 .overlay{
   position:absolute;
   top:0; left:0;
@@ -35,28 +35,58 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 /* Company Name */
 .brand{
   position:absolute;
-  top:50%;
+  top:45%;
   left:50%;
-  transform:translate(-50%, -50%) scale(0);
-  font-size:6rem; /* very big */
+  transform:translate(-50%, -50%) scale(0) rotate(-10deg);
+  font-size:6rem;
   color:#ff006e;
   text-shadow: 3px 3px 10px #00fff2;
-  animation:popup 1.5s forwards;
+  animation: graffiti 1.5s forwards;
   z-index:1;
   text-align:center;
 }
 
-/* Pop-up animation */
-@keyframes popup{
-  0%{transform:translate(-50%, -50%) scale(0); opacity:0;}
-  60%{transform:translate(-50%, -50%) scale(1.2); opacity:1;}
-  100%{transform:translate(-50%, -50%) scale(1);}
+/* Slogan */
+.slogan{
+  position:absolute;
+  top:58%;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:1.5rem;
+  color:white;
+  opacity:0;
+  animation: fadeInSlogan 2s forwards;
+  animation-delay:1.5s;
+  z-index:1;
 }
 
-/* Bouncing Logo */
-.logo{
+/* Graffiti pop-up animation */
+@keyframes graffiti{
+  0%{transform:translate(-50%, -50%) scale(0) rotate(-20deg); opacity:0;}
+  60%{transform:translate(-50%, -50%) scale(1.3) rotate(5deg); opacity:1;}
+  100%{transform:translate(-50%, -50%) scale(1) rotate(0deg);}
+}
+
+/* Slogan fade-in */
+@keyframes fadeInSlogan{
+  0%{opacity:0;}
+  100%{opacity:1;}
+}
+
+/* Bouncing VC Ball */
+.vc-ball{
   position:absolute;
-  width:100px;
+  width:80px;
+  height:80px;
+  background: radial-gradient(circle, #ff006e, #ff85d3);
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:1.5rem;
+  color:white;
+  font-weight:bold;
+  text-shadow:0 0 8px #fff, 0 0 15px #ff006e, 0 0 20px #ff85d3;
   z-index:2;
 }
 
@@ -107,7 +137,6 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 }
 </style>
 </head>
-
 <body>
 
 <!-- Background Video -->
@@ -117,11 +146,12 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 
 <div class="overlay"></div>
 
-<!-- Bouncing Logo -->
-<img src="Logo.jpg" class="logo" id="logo">
+<!-- Bouncing VC Ball -->
+<div class="vc-ball" id="vcBall">VC</div>
 
 <!-- Company Name -->
 <h1 class="brand">Vos Créations</h1>
+<p class="slogan">Your everyday go-to designer</p>
 
 <!-- Hamburger Menu -->
 <div class="menu-icon" onclick="toggleMenu()">☰</div>
@@ -135,7 +165,6 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Permanent Marker',
 <!-- WhatsApp -->
 <a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">WhatsApp</a>
 
-<!-- JS for Side Menu & Bouncing Logo -->
 <script>
 /* Side Menu Toggle */
 function toggleMenu(){
@@ -147,30 +176,30 @@ function toggleMenu(){
   }
 }
 
-/* Irregular Bouncing Logo */
-const logo = document.getElementById('logo');
-let posX = Math.random() * (window.innerWidth - 100);
-let posY = Math.random() * (window.innerHeight - 100);
+/* Irregular Bouncing VC Ball */
+const ball = document.getElementById('vcBall');
+let posX = Math.random() * (window.innerWidth - 80);
+let posY = Math.random() * (window.innerHeight - 80);
 let velX = (Math.random()*3 +1) * (Math.random() <0.5 ? 1:-1);
 let velY = (Math.random()*3 +1) * (Math.random() <0.5 ? 1:-1);
 
-function moveLogo(){
+function moveBall(){
   posX += velX;
   posY += velY;
 
   // Bounce off edges
-  if(posX < 0 || posX + logo.offsetWidth > window.innerWidth) velX*=-1;
-  if(posY < 0 || posY + logo.offsetHeight > window.innerHeight) velY*=-1;
+  if(posX < 0 || posX + ball.offsetWidth > window.innerWidth) velX*=-1;
+  if(posY < 0 || posY + ball.offsetHeight > window.innerHeight) velY*=-1;
 
-  // Add slight randomness for irregular motion
+  // Slight randomness for irregular motion
   velX += (Math.random()-0.5)*0.2;
   velY += (Math.random()-0.5)*0.2;
 
-  logo.style.transform = `translate(${posX}px, ${posY}px)`;
-  requestAnimationFrame(moveLogo);
+  ball.style.transform = `translate(${posX}px, ${posY}px)`;
+  requestAnimationFrame(moveBall);
 }
-moveLogo();
+moveBall();
 </script>
 
 </body>
-</html>
+  </html>
