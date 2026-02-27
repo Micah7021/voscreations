@@ -5,139 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vos Créations - Order</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-<style>
-/* Reset */
-*{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', sans-serif;}
 
-/* Background Video */
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body,html{
+  height:100%;
+  font-family:'Montserrat',sans-serif;
+  overflow-x:hidden;
+}
+
+/* Background */
 .video-bg{
   position:fixed;
-  top:0; left:0;
-  width:100%;
-  height:auto;
-  min-height:100%;
+  top:0;left:0;
+  width:100%;height:100%;
   object-fit:cover;
   z-index:-2;
 }
 .overlay{
-  position:absolute; top:0; left:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.3);
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.5);
   z-index:-1;
 }
 
-/* Top Row */
-.menu-row{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:70px;
-  background:#000;
-  border-bottom:4px solid #fff;
-  box-shadow:0 0 15px #fff;
-  z-index:3;
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  padding-right:20px;
-}
-.menu-icon{
-  font-size:36px;
-  color:white;
-  cursor:pointer;
-}
-
-/* Side Menu */
-.side-menu{
-  position:fixed;
-  top:0;
-  right:-250px;
-  width:250px;
-  height:100%;
-  background:#111;
-  padding-top:60px;
-  transition:0.4s;
-  z-index:4;
-}
-.side-menu a{
-  display:block;
-  color:white;
-  padding:15px 30px;
-  text-decoration:none;
-  font-size:1.2rem;
-}
-.side-menu a:hover{background:#ff006e;}
-
-/* Page Title */
+/* Title */
 .page-title{
-  text-align:center;
   margin-top:100px;
-  font-size:4vw;
-  font-weight:700;
+  text-align:center;
   color:white;
-  text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+  font-size:6vw;
+  text-shadow:0 0 15px red;
 }
 
-/* Form Styles */
+/* Form */
 .order-form{
   width:90%;
   max-width:500px;
-  margin:40px auto 60px;
-  background: rgba(0,0,0,0.6);
-  padding:20px;
-  border-radius:15px;
+  margin:40px auto 80px;
+  background:rgba(0,0,0,0.75);
+  padding:25px;
+  border-radius:20px;
   color:white;
+  backdrop-filter:blur(10px);
+  animation:fadeUp 0.8s ease;
 }
+
 .order-form label{
   display:block;
   margin-top:15px;
-  margin-bottom:5px;
-  font-weight:bold;
+  font-size:0.9rem;
 }
-.order-form input, .order-form textarea, .order-form select{
+
+.order-form input,
+.order-form select,
+.order-form textarea{
   width:100%;
   padding:10px;
-  border-radius:8px;
+  margin-top:5px;
+  border-radius:10px;
   border:none;
-  margin-bottom:10px;
-  font-size:1rem;
+  font-size:0.9rem;
 }
-.order-form select{background:white;color:black;}
+
 .order-form button{
   width:100%;
   padding:12px;
+  margin-top:20px;
+  border:none;
+  border-radius:12px;
   background:#0066ff;
   color:white;
-  border:none;
-  border-radius:10px;
-  font-size:1.2rem;
   font-weight:bold;
   cursor:pointer;
-  margin-top:10px;
+  transition:0.3s;
 }
 .order-form button:hover{
   background:#3399ff;
+  transform:scale(1.03);
 }
 
-/* Bouncing VC Ball */
-.vc-ball{
-  position:absolute;
-  width:80px;
-  height:80px;
-  background:white;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:2rem;
-  color:#0066ff;
-  font-weight:bold;
-  text-shadow:0 0 6px #0066ff,0 0 12px #00ccff;
-  z-index:5;
-  cursor:pointer;
-  user-select:none;
+/* Price Display */
+.price-display{
+  margin-top:10px;
+  font-size:0.85rem;
+  opacity:0.8;
 }
 
 /* WhatsApp */
@@ -146,114 +99,137 @@ html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', san
   bottom:20px;
   right:20px;
   background:#25D366;
-  color:white;
-  padding:14px 20px;
+  padding:12px 18px;
   border-radius:30px;
+  color:white;
   text-decoration:none;
-  font-weight:bold;
-  z-index:6;
+  font-size:0.8rem;
+  z-index:10;
 }
 
-/* Mobile adjustments */
-@media screen and (max-width:600px){
+/* VC Ball */
+.vc-ball{
+  position:absolute;
+  width:60px;
+  height:60px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:bold;
+  color:#0066ff;
+  z-index:8;
+}
+
+/* Animation */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@media(max-width:600px){
   .page-title{font-size:8vw;}
-  .vc-ball{width:50px;height:50px;font-size:1.2rem;}
-  .menu-icon{font-size:28px;}
-  .order-form input, .order-form textarea, .order-form select{font-size:0.9rem;}
-  .order-form button{font-size:1rem;padding:10px;}
 }
 </style>
 </head>
 <body>
 
-<!-- Background Video -->
 <video autoplay muted loop playsinline class="video-bg">
   <source src="backgroundvideo3.mp4" type="video/mp4">
-  Your browser does not support HTML5 video.
 </video>
 <div class="overlay"></div>
 
-<!-- Top Row -->
-<div class="menu-row">
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-</div>
-
-<!-- Side Menu -->
-<div class="side-menu" id="menu">
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="portfolio.html">Portfolio</a>
-  <a href="order.html">Order</a>
-</div>
-
-<!-- Page Title -->
 <h1 class="page-title">Place Your Order</h1>
 
-<!-- Order Form -->
 <form class="order-form" action="https://formspree.io/f/xqedwvyb" method="POST">
-  <label for="name">Your Name</label>
-  <input type="text" name="name" id="name" placeholder="Enter your name" required>
 
-  <label for="email">Your Email</label>
-  <input type="email" name="email" id="email" placeholder="Enter your email" required>
+<label>Your Name</label>
+<input type="text" name="name" required>
 
-  <label for="service">Select Service</label>
-  <select name="service" id="service" onchange="toggleOtherField(this)">
-    <option value="" disabled selected>Choose a service</option>
-    <option value="Graphics Design">Graphics Design</option>
-    <option value="Web Design">Web Design</option>
-    <option value="Logo Design">Logo Design</option>
-    <option value="Flyer/Brochure Design">Flyer/Brochure Design</option>
-    <option value="Other">Other (Specify below)</option>
-  </select>
+<label>Your Email</label>
+<input type="email" name="email" required>
 
-  <div id="otherServiceContainer" style="display:none;">
-    <label for="otherService">Specify Other Service</label>
-    <input type="text" name="otherService" id="otherService" placeholder="Enter custom service">
-  </div>
+<label>Select Service</label>
+<select name="service" id="service" onchange="updateServiceInfo()">
+<option value="" disabled selected>Choose a service</option>
+<option value="Graphics Design">Graphics Design</option>
+<option value="Logo Design">Logo Design</option>
+<option value="Flyer Design">Flyer Design</option>
+<option value="Web Design">Web Design</option>
+<option value="Brand Identity Design">Brand Identity Design</option>
+<option value="UI/UX Design">UI/UX Design</option>
+<option value="Other">Other</option>
+</select>
 
-  <label for="details">Order Details</label>
-  <textarea name="details" id="details" rows="5" placeholder="Provide details about your order" required></textarea>
+<div id="price" class="price-display"></div>
 
-  <button type="submit">Submit Order</button>
+<div id="otherField" style="display:none;">
+<label>Specify Service</label>
+<input type="text" name="custom_service">
+</div>
+
+<label>Project Details</label>
+<textarea name="details" rows="4" required></textarea>
+
+<button type="submit">Submit Order</button>
+
 </form>
 
-<!-- Bouncing VC Ball -->
+<a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">
+Message on WhatsApp
+</a>
+
 <div class="vc-ball" id="vcBall">VC</div>
 
-<!-- WhatsApp -->
-<a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">WhatsApp</a>
-
 <script>
-/* Side Menu Toggle */
-function toggleMenu(){
-  let menu=document.getElementById('menu');
-  menu.style.right=(menu.style.right==='0px')?'-250px':'0';
+
+/* Service Pricing */
+const prices = {
+"Graphics Design":"Starting from ₦10,000",
+"Logo Design":"Starting from ₦15,000",
+"Flyer Design":"Starting from ₦8,000",
+"Web Design":"Starting from ₦40,000",
+"Brand Identity Design":"Starting from ₦25,000",
+"UI/UX Design":"Starting from ₦30,000"
+};
+
+function updateServiceInfo(){
+const service=document.getElementById("service").value;
+const priceDiv=document.getElementById("price");
+const other=document.getElementById("otherField");
+
+if(service==="Other"){
+other.style.display="block";
+priceDiv.innerHTML="";
+}else{
+other.style.display="none";
+priceDiv.innerHTML=prices[service] || "";
+}
 }
 
-/* Bouncing VC Ball Animation */
-const ball=document.getElementById('vcBall');
-let posX=Math.random()*(window.innerWidth-80);
-let posY=Math.random()*(window.innerHeight-80);
-let velX=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
-let velY=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
-
-function moveBall(){
-  posX+=velX; posY+=velY;
-  if(posX<0||posX+ball.offsetWidth>window.innerWidth) velX*=-1;
-  if(posY<0||posY+ball.offsetHeight>window.innerHeight) velY*=-1;
-  velX+=(Math.random()-0.5)*0.2;
-  velY+=(Math.random()-0.5)*0.2;
-  ball.style.transform=`translate(${posX}px, ${posY}px)`;
-  requestAnimationFrame(moveBall);
+/* Auto Fill from URL */
+window.onload=function(){
+const params=new URLSearchParams(window.location.search);
+const service=params.get("service");
+if(service){
+document.getElementById("service").value=service;
+updateServiceInfo();
 }
-moveBall();
+};
 
-/* Show/Hide Other Service Field */
-function toggleOtherField(select){
-  const container = document.getElementById('otherServiceContainer');
-  container.style.display = (select.value === "Other") ? "block" : "none";
+/* VC Ball Animation */
+const ball=document.getElementById("vcBall");
+let x=100,y=200,dx=2,dy=2;
+function move(){
+x+=dx;y+=dy;
+if(x<0||x+60>window.innerWidth)dx*=-1;
+if(y<0||y+60>window.innerHeight)dy*=-1;
+ball.style.transform=`translate(${x}px,${y}px)`;
+requestAnimationFrame(move);
 }
+move();
+
 </script>
 
 </body>
