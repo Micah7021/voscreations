@@ -1,37 +1,232 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services - Vos Creations</title>
+<title>Vos Créations - Services</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:Montserrat,sans-serif;color:white;text-align:center;}
-video{position:fixed;min-width:100%;min-height:100%;object-fit:cover;z-index:-1;}
-.overlay{position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:0;}
-.content{position:relative;padding:80px 20px;}
-h1{font-size:2.5rem;margin-bottom:30px;}
-.service{margin:20px 0;font-size:1.2rem;}
-a{color:#00c3ff;text-decoration:none;}
+html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', sans-serif;}
+
+/* Background Video */
+.video-bg{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+.overlay{
+  position:absolute; top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.3);
+  z-index:-1;
+}
+
+/* Top Row */
+.menu-row{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:70px;
+  background:#000000;
+  border-bottom: 4px solid #ffffff;
+  box-shadow:0 0 15px #ffffff;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-right:20px;
+}
+.menu-icon{
+  font-size:36px;
+  color:white;
+  cursor:pointer;
+}
+
+/* Side Menu */
+.side-menu{
+  position:fixed;
+  top:0;
+  right:-250px;
+  width:250px;
+  height:100%;
+  background:#111;
+  padding-top:60px;
+  transition:0.4s;
+  z-index:4;
+}
+.side-menu a{
+  display:block;
+  color:white;
+  padding:15px 30px;
+  text-decoration:none;
+  font-size:1.2rem;
+}
+.side-menu a:hover{background:#ff006e;}
+
+/* Page Title */
+.page-title{
+  position:absolute;
+  top:15%;
+  width:100%;
+  text-align:center;
+  font-size:4vw;
+  font-weight:700;
+  color:white;
+  text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+  z-index:1;
+}
+
+/* Services List */
+.services-container{
+  position:absolute;
+  top:30%;
+  left:50%;
+  transform:translateX(-50%);
+  width:90%;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.service-item{
+  background:rgba(255,255,255,0.8);
+  color:#000;
+  font-weight:700;
+  padding:15px 20px;
+  border-radius:10px;
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:0.3s;
+}
+.service-item:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,1);
+}
+
+/* Bouncing VC Ball */
+.vc-ball{
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:2rem;
+  color:#0066ff;
+  font-weight:bold;
+  text-shadow:0 0 6px #0066ff,0 0 12px #00ccff;
+  z-index:2;
+}
+
+/* WhatsApp */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  z-index:5;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width:600px){
+  .page-title{
+    font-size:8vw;
+  }
+  .service-item{
+    font-size:1rem;
+    padding:12px 15px;
+  }
+  .vc-ball{
+    width:50px;
+    height:50px;
+    font-size:1.2rem;
+  }
+  .menu-icon{
+    font-size:28px;
+  }
+}
 </style>
 </head>
 <body>
 
-<video autoplay muted loop playsinline>
-<source src="video2.mp4" type="video/mp4">
+<!-- Background Video -->
+<video autoplay muted loop playsinline class="video-bg">
+  <source src="backgroundvideo2.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
-<div class="content">
-<h1>Our Services</h1>
-<div class="service">🎬 Video Editing</div>
-<div class="service">🎨 Graphic Design</div>
-<div class="service">🖥 Brand Identity</div>
-<div class="service">📱 Social Media Creatives</div>
-<br>
-<a href="index.html">← Back Home</a>
+<!-- Top Row -->
+<div class="menu-row">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
 </div>
 
-</body>
+<!-- Side Menu -->
+<div class="side-menu" id="menu">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="order.html">Order</a>
+</div>
 
+<!-- Page Title -->
+<h1 class="page-title">Services</h1>
+
+<!-- Services List -->
+<div class="services-container">
+  <div class="service-item">Logo Design</div>
+  <div class="service-item">Flyer & Poster Design</div>
+  <div class="service-item">Social Media Graphics</div>
+  <div class="service-item">Business Cards</div>
+  <div class="service-item">Web Design</div>
+  <div class="service-item">UI/UX Design</div>
+  <div class="service-item">Banner Ads</div>
+  <div class="service-item">Illustrations</div>
+  <div class="service-item">Branding Packages</div>
+</div>
+
+<!-- Bouncing VC Ball -->
+<div class="vc-ball" id="vcBall">VC</div>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">WhatsApp</a>
+
+<script>
+/* Side Menu Toggle */
+function toggleMenu(){
+  let menu=document.getElementById('menu');
+  menu.style.right=(menu.style.right==='0px')?'-250px':'0';
+}
+
+/* Bouncing VC Ball */
+const ball=document.getElementById('vcBall');
+let posX=Math.random()*(window.innerWidth-90);
+let posY=Math.random()*(window.innerHeight-90);
+let velX=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
+let velY=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
+function moveBall(){
+  posX+=velX; posY+=velY;
+  if(posX<0||posX+ball.offsetWidth>window.innerWidth) velX*=-1;
+  if(posY<0||posY+ball.offsetHeight>window.innerHeight) velY*=-1;
+  velX+=(Math.random()-0.5)*0.2;
+  velY+=(Math.random()-0.5)*0.2;
+  ball.style.transform=`translate(${posX}px, ${posY}px)`;
+  requestAnimationFrame(moveBall);
+}
+moveBall();
+</script>
+</body>
 </html>
