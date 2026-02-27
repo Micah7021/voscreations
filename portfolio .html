@@ -1,36 +1,244 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio - Vos Creations</title>
+<title>Vos Créations - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 <style>
-body{
-margin:0;
-font-family:Montserrat,sans-serif;
-background:url('background1.jpg') center/cover no-repeat fixed;
-color:white;
-text-align:center;
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;width:100%;overflow-x:hidden;font-family:'Montserrat', sans-serif;}
+
+/* Background Video */
+.video-bg{
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:auto;
+  min-height:100%;
+  object-fit:contain;
+  z-index:-2;
 }
 .overlay{
-background:rgba(0,0,0,0.7);
-min-height:100vh;
-padding:80px 20px;
+  position:absolute; top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.3);
+  z-index:-1;
 }
-h1{font-size:2.5rem;margin-bottom:30px;}
-.project{margin:20px 0;font-size:1.2rem;}
-a{color:#ff006e;text-decoration:none;}
+
+/* Top Row */
+.menu-row{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:70px;
+  background:#000;
+  border-bottom:4px solid #fff;
+  box-shadow:0 0 15px #fff;
+  z-index:3;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-right:20px;
+}
+.menu-icon{
+  font-size:36px;
+  color:white;
+  cursor:pointer;
+}
+
+/* Side Menu */
+.side-menu{
+  position:fixed;
+  top:0;
+  right:-250px;
+  width:250px;
+  height:100%;
+  background:#111;
+  padding-top:60px;
+  transition:0.4s;
+  z-index:4;
+}
+.side-menu a{
+  display:block;
+  color:white;
+  padding:15px 30px;
+  text-decoration:none;
+  font-size:1.2rem;
+}
+.side-menu a:hover{background:#ff006e;}
+
+/* Page Title */
+.page-title{
+  position:absolute;
+  top:15%;
+  width:100%;
+  text-align:center;
+  font-size:4vw;
+  font-weight:700;
+  color:white;
+  text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red;
+  z-index:2;
+}
+
+/* Portfolio Grid */
+.portfolio-container{
+  position:absolute;
+  top:30%;
+  left:50%;
+  transform:translateX(-50%);
+  width:90%;
+  max-width:900px;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:15px;
+  padding-bottom:80px; /* spacing at bottom */
+}
+.portfolio-container img{
+  width:100%;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.portfolio-container img:hover{
+  transform:scale(1.05);
+}
+
+/* Modal / Lightbox */
+.modal{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.9);
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+}
+.modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
+.modal:target{
+  display:flex;
+}
+
+/* Bouncing VC Ball */
+.vc-ball{
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:2rem;
+  color:#0066ff;
+  font-weight:bold;
+  text-shadow:0 0 6px #0066ff,0 0 12px #00ccff;
+  z-index:5;
+  cursor:pointer;
+  user-select:none;
+}
+
+/* WhatsApp */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:white;
+  padding:14px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+  z-index:6;
+}
+
+/* Mobile adjustments */
+@media screen and (max-width:600px){
+  .page-title{font-size:8vw;}
+  .vc-ball{width:50px;height:50px;font-size:1.2rem;}
+}
 </style>
 </head>
 <body>
-<div class="overlay">
-<h1>Portfolio</h1>
-<div class="project">Creative Promo Videos</div>
-<div class="project">Brand Logo Designs</div>
-<div class="project">Social Media Campaigns</div>
-<br>
-<a href="index.html">← Back Home</a>
-</div>
-</body>
 
-</html>
+<!-- Background Video -->
+<video autoplay muted loop playsinline class="video-bg">
+  <source src="backgroundvideo3.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<!-- Top Row -->
+<div class="menu-row">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+</div>
+
+<!-- Side Menu -->
+<div class="side-menu" id="menu">
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="portfolio.html">Portfolio</a>
+  <a href="order.html">Order</a>
+</div>
+
+<!-- Page Title -->
+<h1 class="page-title">Portfolio</h1>
+
+<!-- Portfolio Grid -->
+<div class="portfolio-container">
+  <a href="#img1"><img src="20260225_114854.png" alt=""></a>
+  <a href="#img2"><img src="IMG-20260226-WA0035.jpg" alt=""></a>
+  <a href="#img3"><img src="FLYER_023017.png" alt=""></a>
+  <a href="#img4"><img src="8d1d7efb4c4d3325ba839260621868b5.jpg" alt=""></a>
+  <a href="#img5"><img src="7d15f18c2a9265367ef0bae5acd27946.jpg" alt=""></a>
+  <a href="#img6"><img src="6355f54bb3e75e60404f2aefabec1a00.jpg" alt=""></a>
+</div>
+
+<!-- Lightbox Modals -->
+<div id="img1" class="modal"><a href="#"><img src="20260225_114854.png"></a></div>
+<div id="img2" class="modal"><a href="#"><img src="IMG-20260226-WA0035.jpg"></a></div>
+<div id="img3" class="modal"><a href="#"><img src="FLYER_023017.png"></a></div>
+<div id="img4" class="modal"><a href="#"><img src="8d1d7efb4c4d3325ba839260621868b5.jpg"></a></div>
+<div id="img5" class="modal"><a href="#"><img src="7d15f18c2a9265367ef0bae5acd27946.jpg"></a></div>
+<div id="img6" class="modal"><a href="#"><img src="6355f54bb3e75e60404f2aefabec1a00.jpg"></a></div>
+
+<!-- Bouncing VC Ball -->
+<div class="vc-ball" id="vcBall">VC</div>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/2349069205351" class="whatsapp" target="_blank">WhatsApp</a>
+
+<script>
+/* Side Menu Toggle */
+function toggleMenu(){
+  let menu=document.getElementById('menu');
+  menu.style.right=(menu.style.right==='0px')?'-250px':'0';
+}
+
+/* Bouncing VC Ball */
+const ball=document.getElementById('vcBall');
+let posX=Math.random()*(window.innerWidth-90);
+let posY=Math.random()*(window.innerHeight-90);
+let velX=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
+let velY=(Math.random()*3+1)*(Math.random()<0.5?1:-1);
+
+function moveBall(){
+  posX+=velX; posY+=velY;
+  if(posX<0||posX+ball.offsetWidth>window.innerWidth) velX*=-1;
+  if(posY<0||posY+ball.offsetHeight>window.innerHeight) velY*=-1;
+  velX+=(Math.random()-0.5)*0.2;
+  velY+=(Math.random()-0.5)*0.2;
+  ball.style.transform=`translate(${posX}px, ${posY}px)`;
+  requestAnimationFrame(moveBall);
+}
+moveBall();
+</script>
+
+</body>
+  </html>
