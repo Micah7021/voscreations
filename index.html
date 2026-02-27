@@ -82,10 +82,14 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Montserrat', sans-
   white-space:nowrap;
 }
 .brand-container span{
-  font-size:8rem; /* desktop default */
+  font-size:10vw; /* responsive for desktop & mobile */
   font-family:'Allura', cursive;
-  color:white; /* white letters */
-  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000; /* red glow */
+  color:white;
+  text-shadow:
+    0 0 5px #ff0000,
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px #ff0000;
   opacity:0;
   display:inline-block;
   animation:letterIn 1s forwards;
@@ -153,11 +157,15 @@ html,body{height:100%;width:100%;overflow:hidden;font-family:'Montserrat', sans-
 /* Mobile adjustments */
 @media screen and (max-width:600px){
   .brand-container span{
-    font-size:2.5rem; /* much smaller for mobile */
-    text-shadow: 0 0 6px #ff0000, 0 0 12px #ff0000, 0 0 18px #ff0000;
+    font-size:20vw; /* fits smaller screens perfectly */
+    text-shadow:
+      0 0 3px #ff0000,
+      0 0 6px #ff0000,
+      0 0 12px #ff0000,
+      0 0 20px #ff0000;
   }
   .slogan{
-    font-size:1.2rem; 
+    font-size:1.2rem;
   }
   .vc-ball{
     width:50px;
@@ -220,7 +228,7 @@ brandText.split('').forEach((letter,index)=>{
   let yOffset=(Math.random()*50-25)+'px';
   span.style.setProperty('--x', xOffset);
   span.style.setProperty('--y', yOffset);
-  span.style.animationDelay=`${index*0.2}s`;
+  span.style.animationDelay=`${index*0.15}s`;
   brandContainer.appendChild(span);
 });
 
